@@ -1,0 +1,91 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        
+        <title>Calculator</title>
+    </head>
+    <body style="background-color: aqua;">
+        <div>
+            <h1>My Calculator</h1>
+        </div>
+        <table border="2px" width="25%" height="30%">
+            <tr>
+                <input type="text" id="display" >
+            </tr>
+            <tr>
+                <!--value hardcode for each input-->
+                <td><input type="button" name="one" value="1" onclick="pressValue('1')"></td>
+                <td><input type="button" name="two" value="2" onclick="pressValue('2')"></td>
+                <td><input type="button" name="three" value="3" onclick="pressValue('3')"></td>
+                <td><input type="button" name="add" value="+" onclick="setOparator('+')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="four" value="4" onclick="pressValue('4')"></td>
+                <td><input type="button" name="five" value="5" onclick="pressValue('5')"></td>
+                <td><input type="button" name="six" value="6" onclick="pressValue('6')"></td>
+                <td><input type="button" name="minus" value="-" onclick="setOparator('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="seven" value="7" onclick="pressValue('7')"></td>
+                <td><input type="button" name="eight" value="8" onclick="pressValue('8')"></td>
+                <td><input type="button" name="nine" value="9" onclick="pressValue('9')"></td>
+                <td><input type="button" name="devid" value="/" onclick="setOparator('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" name="Clear" value="C" onclick="clearValue('C')"></td>
+                <td><input type="button" name="zero" value="0" onclick="pressValue('0')"></td>
+                <td><input type="button" name="multiply" value="*" onclick="setOparator('*')"></td>
+                <td><input type="button" name="equal" value="=" onclick="equal('=')"></td>
+            </tr>
+        </table>
+
+        <script>
+           
+            //always save value in variable previousValue
+            var previousValue;
+            // when it press operators save in here
+            var oparator;
+
+            //onece pressbutton call this function
+            function pressValue(value) {
+                document.getElementById("display").value += value;
+            }
+
+            //once press oparator call this function
+            function setOparator(value) {
+                oparator = value;
+                previousValue = document.getElementById("display").value;
+                document.getElementById("display").value = "";
+            }
+            //clear display value
+
+            function clearValue() {
+                document.getElementById("display").value = "";
+            }
+            //once press = call this function
+            function equal() {
+                switch (oparator) {
+                    case '+':
+                        document.getElementById("display").value = parseInt(previousValue) + parseInt(document.getElementById("display").value)
+                        break;
+                    
+                    case '-':
+                        document.getElementById("display").value = parseInt(previousValue) - parseInt(document.getElementById("display").value)
+                        break;
+
+                    case '*':
+                        document.getElementById("display").value = parseInt(previousValue) * parseInt(document.getElementById("display").value)
+                        break;
+                    
+                    case '/':
+                        document.getElementById("display").value = parseInt(previousValue) / parseInt(document.getElementById("display").value)
+                        break;
+                    default:
+                        break;
+                }
+            }
+        </script>
+    </body>
+</html>
